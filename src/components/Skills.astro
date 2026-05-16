@@ -1,0 +1,452 @@
+---
+const softSkills = [
+  {
+    title: 'Open-minded',
+    desc: 'Actively consider alternative ideas and approaches, comfortable discussing trade-offs to arrive at the best decision.',
+  },
+  {
+    title: 'Decisive',
+    desc: 'Take ownership of decisions within my area of responsibility and confidently drive them forward.',
+  },
+  {
+    title: 'Execution-focused',
+    desc: 'Turn ideas into tangible outcomes by proposing solutions, evaluating approaches, and delivering to production.',
+  },
+  {
+    title: 'Collaborative',
+    desc: 'Believe in collective intelligence — regularly initiate team discussions and cross-team collaboration.',
+  },
+  {
+    title: 'Innovative',
+    desc: 'Regularly contribute ideas for product evolution and technical improvements that boost productivity.',
+  },
+];
+
+const techSkills = [
+  'OOP', 'Java', 'Kotlin', 'System Design', 'Spring', 'Quarkus',
+  'Reactivity', 'OAuth2', 'Hibernate', 'Git', 'Terraform / Tofu',
+  'AWS', 'RabbitMQ', 'TypeScript', 'React', 'Angular', 'Python',
+];
+
+const languages = [
+  { name: 'English', level: 'C1',     percent: 88  },
+  { name: 'Polish',  level: 'Native', percent: 100 },
+];
+
+const hobbies = [
+  { name: 'Fishing', icon: 'fish' },
+  { name: 'Cycling', icon: 'bike' },
+  { name: 'Sailing', icon: 'sail' },
+];
+---
+
+<section class="skills" id="skills">
+  <div class="skills__inner">
+    <div class="skills__meta">
+      <span class="eyebrow"><span class="marker">04 /</span>Skills & Expertise</span>
+      <span class="eyebrow skills__meta-side">What I bring</span>
+    </div>
+
+    <hr class="hairline" />
+
+    <header class="skills__header reveal">
+      <h2 class="skills__title">
+        What I bring to the <span class="skills__title-accent">table<span class="skills__title-dot">.</span></span>
+      </h2>
+      <p class="skills__lede">
+        A snapshot of how I think, the tools I reach for, and what keeps me curious outside of work.
+      </p>
+    </header>
+
+    <!-- Soft skills -->
+    <section class="sub reveal">
+      <header class="sub__head">
+        <span class="sub__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 5a2.5 2.5 0 0 0-2.5 2.5A2.5 2.5 0 0 0 7 10a2.5 2.5 0 0 0 .8 4.2A2.5 2.5 0 0 0 9 19a2.5 2.5 0 0 0 3 1.5"/>
+            <path d="M12 5a2.5 2.5 0 0 1 2.5 2.5A2.5 2.5 0 0 1 17 10a2.5 2.5 0 0 1-.8 4.2A2.5 2.5 0 0 1 15 19a2.5 2.5 0 0 1-3 1.5"/>
+            <path d="M12 5v15.5"/>
+          </svg>
+        </span>
+        <h3 class="sub__title">Soft skills</h3>
+        <span class="sub__rule" aria-hidden="true"></span>
+      </header>
+
+      <div class="soft__grid">
+        {softSkills.map((s) => (
+          <article class="soft__card">
+            <h4 class="soft__title">{s.title}<span class="soft__dot">.</span></h4>
+            <p class="soft__desc">{s.desc}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <!-- Technical -->
+    <section class="sub reveal">
+      <header class="sub__head">
+        <span class="sub__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+            <path d="m9 7-5 5 5 5"/>
+            <path d="m15 7 5 5-5 5"/>
+            <path d="m14 4-4 16"/>
+          </svg>
+        </span>
+        <h3 class="sub__title">Technical</h3>
+        <span class="sub__rule" aria-hidden="true"></span>
+      </header>
+
+      <ul class="tech__list" role="list">
+        {techSkills.map((t) => <li class="tech__chip">{t}</li>)}
+      </ul>
+    </section>
+
+    <!-- Languages -->
+    <section class="sub reveal">
+      <header class="sub__head">
+        <span class="sub__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 11.5a8.4 8.4 0 0 1-12.6 7.3L4 20l1.2-3.8A8.4 8.4 0 1 1 21 11.5z"/>
+          </svg>
+        </span>
+        <h3 class="sub__title">Languages</h3>
+        <span class="sub__rule" aria-hidden="true"></span>
+      </header>
+
+      <div class="lang__grid">
+        {languages.map((l) => (
+          <article class="lang__card reveal">
+            <div class="lang__head">
+              <h4 class="lang__name">{l.name}</h4>
+              <span class="lang__level">{l.level}</span>
+            </div>
+            <div
+              class="lang__bar"
+              role="progressbar"
+              aria-valuenow={l.percent}
+              aria-valuemin="0"
+              aria-valuemax="100"
+              aria-label={`${l.name} proficiency`}
+            >
+              <span class="lang__fill" style={`--p:${l.percent}%`}></span>
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <!-- Hobbies -->
+    <section class="sub reveal">
+      <header class="sub__head">
+        <span class="sub__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="9"/>
+            <path d="m15.5 8.5-2.7 6-6 2.7 2.7-6 6-2.7z"/>
+          </svg>
+        </span>
+        <h3 class="sub__title">Hobbies</h3>
+        <span class="sub__rule" aria-hidden="true"></span>
+      </header>
+
+      <div class="hobby__grid">
+        {hobbies.map((h) => (
+          <article class="hobby__card">
+            <span class="hobby__icon" aria-hidden="true">
+              {h.icon === 'fish' && (
+                <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M8 24c4-8 12-12 22-10 5 1 9 5 10 10-1 5-5 9-10 10-10 2-18-2-22-10z"/>
+                  <path d="M40 24l6-4v8z"/>
+                  <circle cx="34" cy="22" r="1.4" fill="currentColor" stroke="none"/>
+                  <path d="M16 28c2-2 4-2 6-1M20 20c-2 2-4 2-6 0"/>
+                </svg>
+              )}
+              {h.icon === 'bike' && (
+                <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="34" r="7.5"/>
+                  <circle cx="36" cy="34" r="7.5"/>
+                  <path d="M12 34l10-14 10 14"/>
+                  <path d="M22 20h8M22 20l-3-4h4"/>
+                  <circle cx="22" cy="20" r="1.2" fill="currentColor" stroke="none"/>
+                </svg>
+              )}
+              {h.icon === 'sail' && (
+                <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M24 8v25"/>
+                  <path d="M24 11 14 30h10z"/>
+                  <path d="M24 16l9 14h-9"/>
+                  <path d="M8 36c4 3 8 3 12 0s8-3 12 0 8 3 8 0"/>
+                  <path d="M4 41c4 2 6 2 10 0s8-2 12 0 8 2 12 0 6 0 6 0"/>
+                </svg>
+              )}
+            </span>
+            <h4 class="hobby__name">{h.name}</h4>
+          </article>
+        ))}
+      </div>
+    </section>
+  </div>
+</section>
+
+<style>
+  .skills {
+    position: relative;
+    border-top: 1px solid var(--hairline);
+  }
+
+  .skills__inner {
+    max-width: var(--page-max);
+    margin: 0 auto;
+    padding: clamp(4rem, 8vw, 7rem) var(--page-pad-x) clamp(5rem, 10vw, 9rem);
+  }
+
+  .skills__meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+  }
+  .skills__meta-side { color: var(--text-dim); }
+
+  .skills__header {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: clamp(2.5rem, 6vw, 5rem);
+    align-items: end;
+    margin: clamp(2.5rem, 6vw, 4.5rem) 0 clamp(3rem, 6vw, 4.5rem);
+  }
+
+  .skills__title {
+    font-size: clamp(2.4rem, 6vw, 4.4rem);
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -0.04em;
+    color: var(--text);
+  }
+  .skills__title-accent { color: var(--amber); }
+  .skills__title-dot { color: var(--amber); }
+
+  .skills__lede {
+    font-size: clamp(0.98rem, 1.05vw, 1.05rem);
+    line-height: 1.7;
+    color: var(--text-soft);
+    max-width: 52ch;
+  }
+
+  /* ── Subsection heading ──────────────────────── */
+  .sub {
+    margin-bottom: clamp(2.5rem, 5vw, 4rem);
+  }
+  .sub:last-child { margin-bottom: 0; }
+
+  .sub__head {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    margin-bottom: clamp(1.2rem, 2.5vw, 1.8rem);
+  }
+  .sub__icon {
+    display: inline-grid;
+    place-items: center;
+    width: 32px;
+    height: 32px;
+    border: 1px solid var(--hairline-3);
+    border-radius: 8px;
+    color: var(--amber);
+    background: rgba(59, 154, 255, 0.06);
+    flex-shrink: 0;
+  }
+  .sub__icon svg { width: 16px; height: 16px; }
+
+  .sub__title {
+    font-family: var(--font-display);
+    font-size: clamp(1.15rem, 1.6vw, 1.35rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--text);
+    margin: 0;
+  }
+
+  .sub__rule {
+    flex: 1;
+    height: 1px;
+    background: var(--hairline-2);
+  }
+
+  /* ── Soft skills ──────────────────────────────── */
+  .soft__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1rem;
+  }
+  .soft__card {
+    padding: 1.4rem 1.5rem;
+    background: linear-gradient(180deg, rgba(20, 35, 64, 0.55), rgba(10, 20, 40, 0.55));
+    border: 1px solid var(--hairline-2);
+    border-radius: 12px;
+    transition:
+      border-color 0.4s var(--ease-out),
+      transform 0.4s var(--ease-out),
+      background 0.4s var(--ease-out);
+  }
+  .soft__card:hover {
+    border-color: var(--hairline-3);
+    transform: translateY(-2px);
+  }
+  .soft__title {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--text);
+    margin: 0 0 0.45rem;
+  }
+  .soft__dot { color: var(--amber); }
+  .soft__desc {
+    font-size: 0.94rem;
+    color: var(--text-soft);
+    line-height: 1.55;
+    margin: 0;
+  }
+
+  /* ── Technical chips ──────────────────────────── */
+  .tech__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.55rem;
+  }
+  .tech__chip {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 0.92rem;
+    letter-spacing: -0.005em;
+    color: var(--text-soft);
+    padding: 0.6rem 1rem;
+    border: 1px solid var(--hairline-2);
+    border-radius: 10px;
+    background: rgba(232, 238, 247, 0.025);
+    transition:
+      color 0.3s var(--ease-out),
+      border-color 0.3s var(--ease-out),
+      background 0.3s var(--ease-out),
+      transform 0.3s var(--ease-out);
+    cursor: default;
+  }
+  .tech__chip:hover {
+    color: var(--amber);
+    border-color: var(--amber);
+    background: rgba(59, 154, 255, 0.06);
+    transform: translateY(-2px);
+  }
+
+  /* ── Languages ────────────────────────────────── */
+  .lang__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.1rem;
+  }
+  .lang__card {
+    padding: 1.5rem 1.6rem;
+    background: linear-gradient(180deg, rgba(20, 35, 64, 0.55), rgba(10, 20, 40, 0.55));
+    border: 1px solid var(--hairline-2);
+    border-radius: 12px;
+  }
+  .lang__head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+    gap: 1rem;
+  }
+  .lang__name {
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--text);
+    margin: 0;
+  }
+  .lang__level {
+    font-family: var(--font-mono);
+    font-size: 0.74rem;
+    letter-spacing: 0.08em;
+    color: var(--amber);
+    text-transform: uppercase;
+  }
+  .lang__bar {
+    position: relative;
+    height: 6px;
+    background: var(--hairline-2);
+    border-radius: 999px;
+    overflow: hidden;
+  }
+  .lang__fill {
+    display: block;
+    height: 100%;
+    width: 0;
+    background: linear-gradient(90deg, var(--amber-soft), var(--amber));
+    border-radius: 999px;
+    transition: width 1.2s var(--ease-out) 0.2s;
+    box-shadow: 0 0 12px var(--amber-glow);
+  }
+  /* Trigger fill when the card scrolls into view (uses existing .reveal observer). */
+  .lang__card.is-in .lang__fill { width: var(--p, 0%); }
+
+  /* ── Hobbies ──────────────────────────────────── */
+  .hobby__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+  }
+  .hobby__card {
+    padding: 2.2rem 1.5rem;
+    background: linear-gradient(180deg, rgba(20, 35, 64, 0.55), rgba(10, 20, 40, 0.55));
+    border: 1px solid var(--hairline-2);
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    text-align: center;
+    transition:
+      border-color 0.4s var(--ease-out),
+      transform 0.4s var(--ease-out),
+      background 0.4s var(--ease-out);
+  }
+  .hobby__card:hover {
+    border-color: var(--amber);
+    transform: translateY(-3px);
+    background: linear-gradient(180deg, rgba(59, 154, 255, 0.06), rgba(10, 20, 40, 0.55));
+  }
+  .hobby__card:hover .hobby__icon { color: var(--amber); transform: translateY(-2px); }
+
+  .hobby__icon {
+    width: 42px;
+    height: 42px;
+    color: var(--text-soft);
+    transition: color 0.4s var(--ease-out), transform 0.4s var(--ease-out);
+  }
+  .hobby__icon svg { width: 100%; height: 100%; }
+
+  .hobby__name {
+    font-family: var(--font-display);
+    font-size: 1.05rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--text);
+    margin: 0;
+  }
+
+  /* ── Mobile ────────────────────────────────────── */
+  @media (max-width: 900px) {
+    .skills__header {
+      grid-template-columns: 1fr;
+      gap: 1.25rem;
+      align-items: start;
+    }
+  }
+</style>
