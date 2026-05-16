@@ -1,0 +1,297 @@
+---
+const education = [
+  {
+    icon: 'cap',
+    institution: 'Koszalin University of Technology',
+    degree: "Bachelor's degree in Computer Science",
+    period: '2019 — 2023',
+    location: 'Śniadeckich 2, 75-900 Koszalin',
+    highlights: [
+      { label: 'Grade: 5', kind: 'grade' },
+      { label: "Rector's scholarship holder", kind: 'award' },
+    ],
+  },
+  {
+    icon: 'book',
+    institution: 'ZS nr. 9 Elektronik',
+    degree: 'Technical IT High School',
+    period: '2015 — 2019',
+    location: 'Koszalin, ul. Jedności 9',
+    highlights: [],
+  },
+];
+---
+
+<section class="edu" id="education">
+  <div class="edu__inner">
+    <div class="edu__meta">
+      <span class="eyebrow"><span class="marker">05 /</span>Education</span>
+      <span class="eyebrow edu__meta-side">Academic background</span>
+    </div>
+
+    <hr class="hairline" />
+
+    <header class="edu__header reveal">
+      <h2 class="edu__title">
+        Academic <span class="edu__title-accent">background<span class="edu__title-dot">.</span></span>
+      </h2>
+      <p class="edu__lede">
+        Where I built the foundation — from a technical IT high school to a computer science degree.
+      </p>
+    </header>
+
+    <div class="edu__grid">
+      {education.map((e, i) => (
+        <article class="edu__card reveal" style={`transition-delay:${i * 90}ms`}>
+          <header class="edu__card-head">
+            <span class="edu__icon" aria-hidden="true">
+              {e.icon === 'cap' && (
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M2 10l10-4 10 4-10 4-10-4z"/>
+                  <path d="M6 12v5c0 1 3 2 6 2s6-1 6-2v-5"/>
+                  <path d="M22 10v5"/>
+                </svg>
+              )}
+              {e.icon === 'book' && (
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M3 5c2-1 5-1 9 1v15c-4-2-7-2-9-1z"/>
+                  <path d="M21 5c-2-1-5-1-9 1v15c4-2 7-2 9-1z"/>
+                </svg>
+              )}
+            </span>
+            <span class="edu__period">{e.period}</span>
+          </header>
+
+          <h3 class="edu__institution">{e.institution}</h3>
+          <p class="edu__degree">{e.degree}</p>
+
+          <p class="edu__location">
+            <span class="edu__pin" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 21s-7-6.6-7-12a7 7 0 0 1 14 0c0 5.4-7 12-7 12z"/>
+                <circle cx="12" cy="9.5" r="2.5"/>
+              </svg>
+            </span>
+            <span>{e.location}</span>
+          </p>
+
+          {e.highlights.length > 0 && (
+            <ul class="edu__chips" role="list">
+              {e.highlights.map((h) => (
+                <li class={`edu__chip edu__chip--${h.kind}`}>
+                  {h.kind === 'grade' && (
+                    <svg viewBox="0 0 24 24" fill="currentColor" stroke="none" aria-hidden="true">
+                      <path d="M12 2l2.9 6.6L22 10l-5.4 4.9L18.2 22 12 18.3 5.8 22l1.6-7.1L2 10l7.1-1.4L12 2z"/>
+                    </svg>
+                  )}
+                  {h.kind === 'award' && (
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <circle cx="12" cy="9" r="6"/>
+                      <path d="M9 14l-2 7 5-3 5 3-2-7"/>
+                    </svg>
+                  )}
+                  <span>{h.label}</span>
+                </li>
+              ))}
+            </ul>
+          )}
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .edu {
+    position: relative;
+    border-top: 1px solid var(--hairline);
+  }
+
+  .edu__inner {
+    max-width: var(--page-max);
+    margin: 0 auto;
+    padding: clamp(4rem, 8vw, 7rem) var(--page-pad-x) clamp(5rem, 10vw, 9rem);
+  }
+
+  .edu__meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+  }
+  .edu__meta-side { color: var(--text-dim); }
+
+  .edu__header {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: clamp(2.5rem, 6vw, 5rem);
+    align-items: end;
+    margin: clamp(2.5rem, 6vw, 4.5rem) 0 clamp(3rem, 6vw, 4.5rem);
+  }
+
+  .edu__title {
+    font-size: clamp(2.4rem, 6vw, 4.4rem);
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -0.04em;
+    color: var(--text);
+  }
+  .edu__title-accent { color: var(--amber); }
+  .edu__title-dot { color: var(--amber); }
+
+  .edu__lede {
+    font-size: clamp(0.98rem, 1.05vw, 1.05rem);
+    line-height: 1.7;
+    color: var(--text-soft);
+    max-width: 52ch;
+  }
+
+  /* ── Cards ───────────────────────────────────── */
+  .edu__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    gap: 1.25rem;
+  }
+
+  .edu__card {
+    position: relative;
+    padding: clamp(1.6rem, 2.5vw, 2rem);
+    background: linear-gradient(180deg, rgba(20, 35, 64, 0.55), rgba(10, 20, 40, 0.55));
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    border: 1px solid var(--hairline-2);
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+    transition:
+      border-color 0.4s var(--ease-out),
+      transform 0.4s var(--ease-out);
+  }
+  .edu__card:hover {
+    border-color: var(--hairline-3);
+    transform: translateY(-2px);
+  }
+
+  .edu__card-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .edu__icon {
+    display: inline-grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    border: 1px solid var(--hairline-3);
+    border-radius: 10px;
+    color: var(--amber);
+    background: rgba(59, 154, 255, 0.06);
+    flex-shrink: 0;
+  }
+  .edu__icon svg { width: 22px; height: 22px; }
+
+  .edu__period {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    color: var(--text-muted);
+    white-space: nowrap;
+  }
+
+  .edu__institution {
+    font-family: var(--font-display);
+    font-size: clamp(1.2rem, 1.7vw, 1.45rem);
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    color: var(--text);
+    margin: 0;
+    line-height: 1.2;
+  }
+
+  .edu__degree {
+    font-family: var(--font-display);
+    font-size: 0.96rem;
+    font-weight: 600;
+    color: var(--amber);
+    letter-spacing: -0.005em;
+    margin: 0;
+  }
+
+  .edu__location {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.88rem;
+    color: var(--text-muted);
+    margin: 0.4rem 0 0;
+  }
+  .edu__pin {
+    display: inline-grid;
+    place-items: center;
+    width: 14px;
+    height: 14px;
+    color: var(--text-dim);
+    flex-shrink: 0;
+  }
+  .edu__pin svg { width: 100%; height: 100%; }
+
+  .edu__chips {
+    list-style: none;
+    margin: 0.8rem 0 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+  .edu__chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.04em;
+    padding: 0.35rem 0.75rem;
+    border: 1px solid var(--hairline-2);
+    border-radius: 999px;
+    background: rgba(232, 238, 247, 0.025);
+    color: var(--text-soft);
+    transition:
+      color 0.3s var(--ease-out),
+      border-color 0.3s var(--ease-out),
+      background 0.3s var(--ease-out);
+  }
+  .edu__chip svg { width: 12px; height: 12px; }
+
+  /* Grade chip — filled azure to feel like a badge */
+  .edu__chip--grade {
+    color: var(--ink-deep);
+    border-color: var(--amber);
+    background: var(--amber);
+    font-weight: 600;
+  }
+
+  /* Award chip — outlined azure tint */
+  .edu__chip--award {
+    color: var(--amber);
+    border-color: rgba(59, 154, 255, 0.35);
+    background: rgba(59, 154, 255, 0.07);
+  }
+
+  /* ── Mobile ──────────────────────────────────── */
+  @media (max-width: 900px) {
+    .edu__header {
+      grid-template-columns: 1fr;
+      gap: 1.25rem;
+      align-items: start;
+    }
+  }
+  @media (max-width: 540px) {
+    .edu__card-head { gap: 0.6rem; }
+  }
+</style>
