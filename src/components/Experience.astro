@@ -1,0 +1,453 @@
+---
+const experiences = [
+  {
+    mark: 'S',
+    company: 'Sport Alliance',
+    role: 'Software Engineer',
+    period: '08.2023 — Present',
+    points: [
+      'Fin-tech application collecting, processing and debiting studio members for their periodic claims on behalf of sport facilities',
+      '3 party financing provider integration to provide, monitor, help with attractive loan options to customers.',
+      'Customer success web application for managing client accounts, contracts, fees, invoices, money-laundering statuses',
+      'Developing BaFin permit compliant features',
+      'Client UI providing insights into product performance — fee development, reversal ratios and more',
+    ],
+    tags: ['Kotlin', 'Spring Boot', 'RabbitMQ', 'EBICS', 'AWS', 'Terraform', 'Hibernate', 'Vaadin', 'Vue', 'Kubernetes'],
+    current: true,
+  },
+  {
+    mark: 'A',
+    company: 'Atipera',
+    role: 'Software Engineer',
+    period: '12.2022 — 08.2023',
+    points: [
+      'Platform managing customer data of TUI (travel agency) users',
+      'Handling bookings, payment details, addresses, activities and more',
+    ],
+    tags: ['Kotlin', 'Java', 'Quarkus', 'Mutiny', 'Hibernate', 'GitLab', 'AWS', 'Terraform', 'GraalVM', 'DynamoDB', 'Lambda', 'SQS', 'Fargate'],
+    current: false,
+  },
+  {
+    mark: 'G',
+    company: 'Global Logic',
+    role: 'Intern Software Engineer',
+    period: '07.2022 — 09.2022',
+    points: [
+      'Web application for tracking parking lot traffic',
+      'Angular UI allowing users to reserve parking slots',
+    ],
+    tags: ['Java', 'Spring Boot', 'Angular', 'Hibernate', 'PostgreSQL', 'Liquibase', 'Git'],
+    current: false,
+  },
+];
+---
+
+<section class="exp" id="experience">
+  <div class="exp__inner">
+    <div class="exp__meta">
+      <span class="eyebrow"><span class="marker">03 /</span>Experience</span>
+      <span class="eyebrow exp__meta-side">My journey</span>
+    </div>
+
+    <hr class="hairline" />
+
+    <header class="exp__header reveal">
+      <h2 class="exp__title">
+        My <span class="exp__title-accent">journey<span class="exp__title-dot">.</span></span>
+      </h2>
+      <p class="exp__lede">
+        A short trail of the places that shaped how I build — and what I picked up along the way.
+      </p>
+    </header>
+
+    <ol class="timeline" role="list">
+      {experiences.map((e, i) => (
+        <li class="entry reveal" style={`transition-delay:${i * 90}ms`}>
+          <span class={`entry__dot ${e.current ? 'is-current' : ''}`} aria-hidden="true"></span>
+          <span class="entry__branch" aria-hidden="true"></span>
+
+          <article class="card">
+            <header class="card__head">
+              <div class="card__id">
+                <span class="card__mark" aria-hidden="true">{e.mark}</span>
+                <div class="card__id-text">
+                  <h3 class="card__company">{e.company}</h3>
+                  <p class="card__role">{e.role}</p>
+                </div>
+              </div>
+              <span class="card__period">
+                {e.current && <span class="card__live" aria-hidden="true"></span>}
+                {e.period}
+              </span>
+            </header>
+
+            <ul class="card__points" role="list">
+              {e.points.map((p) => <li>{p}</li>)}
+            </ul>
+
+            <ul class="card__tags" role="list">
+              {e.tags.map((t) => <li>{t}</li>)}
+            </ul>
+          </article>
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>
+
+<style>
+  .exp {
+    position: relative;
+    border-top: 1px solid var(--hairline);
+  }
+
+  .exp__inner {
+    max-width: var(--page-max);
+    margin: 0 auto;
+    padding: clamp(4rem, 8vw, 7rem) var(--page-pad-x) clamp(5rem, 10vw, 9rem);
+  }
+
+  .exp__meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+  }
+  .exp__meta-side { color: var(--text-dim); }
+
+  .exp__header {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: clamp(2.5rem, 6vw, 5rem);
+    align-items: end;
+    margin: clamp(2.5rem, 6vw, 4.5rem) 0 clamp(3rem, 6vw, 4.5rem);
+  }
+
+  .exp__title {
+    font-size: clamp(2.6rem, 6.5vw, 4.6rem);
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -0.04em;
+    color: var(--text);
+  }
+  .exp__title-accent { color: var(--amber); }
+  .exp__title-dot { color: var(--amber); }
+
+  .exp__lede {
+    font-size: clamp(0.98rem, 1.05vw, 1.05rem);
+    line-height: 1.7;
+    color: var(--text-soft);
+    max-width: 52ch;
+  }
+
+  /* ── Timeline rail — centered, cards alternate ─── */
+  .timeline {
+    --dot: 12px;
+    --card-gap: clamp(1.25rem, 2.5vw, 2.25rem);
+
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    position: relative;
+  }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 1px;
+    transform: translateX(-0.5px);
+    background: linear-gradient(
+      to bottom,
+      transparent 0%,
+      var(--hairline-2) 4%,
+      var(--hairline-2) 96%,
+      transparent 100%
+    );
+  }
+
+  .entry {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: calc(var(--card-gap) * 2);
+    padding-bottom: clamp(2rem, 4vw, 3.5rem);
+  }
+  .entry:last-child { padding-bottom: 0; }
+
+  /* Odd entries (1st, 3rd) → LEFT · Even entries (2nd) → RIGHT */
+  .entry:nth-child(odd)  .card { grid-column: 1; }
+  .entry:nth-child(even) .card { grid-column: 2; }
+
+  .entry__dot {
+    position: absolute;
+    top: 1.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: var(--dot);
+    height: var(--dot);
+    border-radius: 50%;
+    background: var(--ink-deep);
+    border: 1px solid var(--amber);
+    box-shadow: 0 0 0 4px var(--ink-deep);
+    transition: transform 0.4s var(--ease-out);
+  }
+  .entry:hover .entry__dot {
+    transform: translateX(-50%) scale(1.2);
+    background: var(--amber);
+  }
+
+  .entry__dot.is-current {
+    background: var(--amber);
+    animation: pulse-dot 2.2s ease-out infinite;
+  }
+  @keyframes pulse-dot {
+    0%, 100% {
+      box-shadow:
+        0 0 0 4px var(--ink-deep),
+        0 0 0 6px rgba(59, 154, 255, 0.35);
+    }
+    65% {
+      box-shadow:
+        0 0 0 4px var(--ink-deep),
+        0 0 0 14px rgba(59, 154, 255, 0);
+    }
+  }
+
+  .entry__branch {
+    position: absolute;
+    top: calc(1.5rem + (var(--dot) / 2));
+    height: 1px;
+    width: var(--card-gap);
+    background: var(--hairline-2);
+  }
+  .entry:nth-child(odd)  .entry__branch {
+    right: calc(50% + (var(--dot) / 2));
+  }
+  .entry:nth-child(even) .entry__branch {
+    left:  calc(50% + (var(--dot) / 2));
+  }
+
+  /* ── Card ────────────────────────────────────────── */
+  .card {
+    position: relative;
+    padding: clamp(1.4rem, 2.5vw, 2rem);
+    background:
+      linear-gradient(180deg, rgba(20, 35, 64, 0.55) 0%, rgba(10, 20, 40, 0.55) 100%);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    border: 1px solid var(--hairline-2);
+    border-radius: 12px;
+    overflow: hidden;
+    transition:
+      border-color 0.4s var(--ease-out),
+      transform 0.4s var(--ease-out),
+      background 0.4s var(--ease-out);
+  }
+  .card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: radial-gradient(
+      circle 220px at var(--mx, 0%) var(--my, 0%),
+      rgba(59, 154, 255, 0.10) 0%,
+      transparent 70%
+    );
+    opacity: 0;
+    transition: opacity 0.5s var(--ease-out);
+  }
+  .card:hover {
+    border-color: var(--hairline-3);
+    transform: translateY(-2px);
+  }
+  .card:hover::before { opacity: 1; }
+
+  .card__head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 1.3rem;
+  }
+
+  .card__id {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.95rem;
+  }
+
+  .card__mark {
+    display: inline-grid;
+    place-items: center;
+    width: 42px;
+    height: 42px;
+    border: 1px solid var(--hairline-3);
+    border-radius: 10px;
+    font-family: var(--font-display);
+    font-weight: 800;
+    color: var(--amber);
+    font-size: 1.05rem;
+    letter-spacing: -0.02em;
+    flex-shrink: 0;
+    background: rgba(59, 154, 255, 0.06);
+  }
+
+  .card__id-text { padding-top: 0.1rem; }
+
+  .card__company {
+    font-family: var(--font-display);
+    font-size: clamp(1.3rem, 1.8vw, 1.55rem);
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    color: var(--text);
+    line-height: 1.2;
+    margin: 0;
+  }
+
+  .card__role {
+    font-family: var(--font-display);
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--amber);
+    margin: 0.2rem 0 0;
+    letter-spacing: -0.005em;
+  }
+
+  .card__period {
+    font-family: var(--font-mono);
+    font-size: 0.76rem;
+    letter-spacing: 0.06em;
+    color: var(--text-muted);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5em;
+    white-space: nowrap;
+    padding-top: 0.65rem;
+  }
+  .card__live {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--amber);
+    box-shadow: 0 0 0 0 var(--amber-glow);
+    animation: pulse-live 2s ease-out infinite;
+  }
+  @keyframes pulse-live {
+    0%   { box-shadow: 0 0 0 0 rgba(59, 154, 255, 0.45); }
+    70%  { box-shadow: 0 0 0 8px rgba(59, 154, 255, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(59, 154, 255, 0); }
+  }
+
+  .card__points {
+    list-style: none;
+    margin: 0 0 1.3rem;
+    padding: 0;
+  }
+  .card__points li {
+    position: relative;
+    padding-left: 1.3rem;
+    margin-bottom: 0.5rem;
+    font-size: 0.97rem;
+    line-height: 1.55;
+    color: var(--text-soft);
+  }
+  .card__points li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.7em;
+    width: 8px;
+    height: 1px;
+    background: var(--amber);
+  }
+
+  .card__tags {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+  .card__tags li {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.02em;
+    color: var(--text-muted);
+    padding: 0.3rem 0.65rem;
+    border: 1px solid var(--hairline-2);
+    border-radius: 999px;
+    background: rgba(232, 238, 247, 0.02);
+    transition:
+      color 0.3s var(--ease-out),
+      border-color 0.3s var(--ease-out),
+      background 0.3s var(--ease-out);
+  }
+  .card__tags li:hover {
+    color: var(--amber);
+    border-color: var(--amber);
+    background: rgba(59, 154, 255, 0.05);
+  }
+
+  /* ── Tablet ──────────────────────────────────────── */
+  @media (max-width: 900px) {
+    .exp__header {
+      grid-template-columns: 1fr;
+      gap: 1.25rem;
+      align-items: start;
+    }
+  }
+
+  /* ── Mobile — collapse to single-side rail ─────── */
+  @media (max-width: 768px) {
+    .timeline { --rail-x: 0.75rem; }
+
+    .timeline::before {
+      left: var(--rail-x);
+      transform: none;
+    }
+
+    .entry {
+      grid-template-columns: 1fr;
+      column-gap: 0;
+      padding-left: clamp(2.4rem, 7vw, 3.2rem);
+    }
+    .entry:nth-child(odd)  .card,
+    .entry:nth-child(even) .card {
+      grid-column: 1;
+    }
+
+    .entry__dot { left: var(--rail-x); }
+    .entry:hover .entry__dot { transform: translateX(-50%) scale(1.2); }
+
+    .entry:nth-child(odd)  .entry__branch,
+    .entry:nth-child(even) .entry__branch {
+      right: auto;
+      left: calc(var(--rail-x) + (var(--dot) / 2));
+      width: calc(clamp(2.4rem, 7vw, 3.2rem) - var(--rail-x) - (var(--dot) / 2) - 12px);
+    }
+  }
+
+  @media (max-width: 600px) {
+    .card__head { gap: 0.6rem; }
+    .card__period { padding-top: 0; }
+    .card__mark { width: 36px; height: 36px; }
+  }
+</style>
+
+<script>
+  // Soft spotlight follows the cursor inside each card.
+  const cards = document.querySelectorAll<HTMLElement>('.card');
+  cards.forEach((card) => {
+    card.addEventListener('pointermove', (e) => {
+      const r = card.getBoundingClientRect();
+      card.style.setProperty('--mx', `${e.clientX - r.left}px`);
+      card.style.setProperty('--my', `${e.clientY - r.top}px`);
+    });
+  });
+</script>
