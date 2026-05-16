@@ -1,0 +1,142 @@
+---
+interface Props {
+  index: string;
+  title: string;
+  body: string;
+  icon: "collab" | "perf" | "ownership" | "open";
+}
+
+const { index, title, body, icon } = Astro.props;
+---
+
+<article class="pillar reveal" style={`--reveal-delay: ${Number(index) * 90}ms`}>
+  <div class="pillar__head">
+    <span class="pillar__num">{index}</span>
+    <span class="pillar__icon" aria-hidden="true">
+      {icon === "collab" && (
+        <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="14" cy="18" r="6" />
+          <circle cx="34" cy="18" r="6" />
+          <circle cx="24" cy="34" r="6" />
+          <path d="M14 24 L 24 28" />
+          <path d="M34 24 L 24 28" />
+        </svg>
+      )}
+      {icon === "perf" && (
+        <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M8 36 L 18 24 L 26 30 L 40 12" />
+          <path d="M40 22 L 40 12 L 30 12" />
+          <path d="M8 40 L 40 40" opacity="0.4" />
+        </svg>
+      )}
+      {icon === "ownership" && (
+        <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M24 6 L 40 12 V 26 C 40 34 32 40 24 42 C 16 40 8 34 8 26 V 12 Z" />
+          <path d="M17 24 L 22 29 L 32 19" />
+        </svg>
+      )}
+      {icon === "open" && (
+        <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="24" cy="24" r="14" />
+          <path d="M24 10 V 38" opacity="0.6" />
+          <path d="M10 24 H 38" opacity="0.6" />
+          <path d="M14 16 C 20 22, 28 22, 34 16" opacity="0.4" />
+          <path d="M14 32 C 20 26, 28 26, 34 32" opacity="0.4" />
+        </svg>
+      )}
+    </span>
+  </div>
+
+  <h3 class="pillar__title">{title}</h3>
+  <p class="pillar__body">{body}</p>
+
+  <span class="pillar__corner" aria-hidden="true"></span>
+</article>
+
+<style>
+  .pillar {
+    position: relative;
+    padding: clamp(1.4rem, 1rem + 1.2vw, 2rem);
+    background:
+      linear-gradient(180deg, rgba(255,255,255,0.012), transparent 50%),
+      var(--bg-tile);
+    border: 1px solid var(--hairline);
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    min-height: 220px;
+    overflow: hidden;
+    transition: border-color 0.4s var(--ease), transform 0.4s var(--ease);
+  }
+
+  .pillar::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(140% 80% at 0% 100%, var(--accent-glow), transparent 55%);
+    opacity: 0;
+    transition: opacity 0.5s var(--ease);
+    pointer-events: none;
+  }
+
+  .pillar:hover {
+    border-color: var(--hairline-strong);
+    transform: translateY(-3px);
+  }
+  .pillar:hover::before { opacity: 1; }
+  .pillar:hover .pillar__icon { color: var(--accent); transform: rotate(-3deg); }
+  .pillar:hover .pillar__corner { transform: scale(1); }
+
+  .pillar__head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .pillar__num {
+    font-family: var(--font-mono);
+    font-size: var(--step--1);
+    color: var(--ink-dim);
+    letter-spacing: 0.08em;
+  }
+
+  .pillar__icon {
+    width: 2.4rem;
+    height: 2.4rem;
+    color: var(--ink-muted);
+    transition: color 0.4s var(--ease), transform 0.4s var(--ease);
+  }
+  .pillar__icon svg { width: 100%; height: 100%; }
+
+  .pillar__title {
+    font-family: var(--font-display);
+    font-size: var(--step-2);
+    font-weight: 380;
+    font-variation-settings: "opsz" 60, "SOFT" 70;
+    color: var(--ink);
+    line-height: 1.15;
+    letter-spacing: -0.015em;
+  }
+
+  .pillar__body {
+    font-size: var(--step-0);
+    color: var(--ink-muted);
+    line-height: 1.6;
+    margin-top: auto;
+  }
+
+  .pillar__corner {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 1.6rem;
+    height: 1.6rem;
+    border-top: 1px solid var(--accent);
+    border-right: 1px solid var(--accent);
+    transform: scale(0.4);
+    transform-origin: top right;
+    transition: transform 0.4s var(--ease);
+    opacity: 0.85;
+  }
+</style>

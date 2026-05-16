@@ -1,0 +1,155 @@
+---
+// Minimal editorial top nav — page marker on the left, anchor links on the right.
+---
+
+<header class="nav">
+  <div class="nav__inner">
+    <a href="#top" class="nav__mark" aria-label="Damian Kapłon — home">
+      <span class="nav__mark-glyph">DK<span class="nav__mark-dot">.</span></span>
+      <span class="nav__mark-tag">Damian Kapłon</span>
+    </a>
+
+    <nav class="nav__links" aria-label="Primary">
+      <a href="#index"   data-num="01">Index</a>
+      <a href="#method"  data-num="02">Method</a>
+      <a href="mailto:kaplon.damian99@gmail.com" class="nav__contact">
+        <span>Contact</span>
+        <svg viewBox="0 0 16 16" aria-hidden="true">
+          <path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+    </nav>
+  </div>
+  <hr class="hairline" />
+</header>
+
+<style>
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    backdrop-filter: blur(14px) saturate(1.1);
+    -webkit-backdrop-filter: blur(14px) saturate(1.1);
+    background: linear-gradient(
+      to bottom,
+      rgba(7, 15, 31, 0.78) 0%,
+      rgba(7, 15, 31, 0.55) 70%,
+      rgba(7, 15, 31, 0) 100%
+    );
+  }
+
+  .nav__inner {
+    max-width: var(--page-max);
+    margin: 0 auto;
+    padding: 1.05rem var(--page-pad-x);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+  }
+
+  .nav__mark {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.75rem;
+    color: var(--text);
+  }
+
+  .nav__mark-glyph {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 1.35rem;
+    letter-spacing: -0.04em;
+    color: var(--amber);
+    line-height: 1;
+  }
+  .nav__mark-dot {
+    color: var(--amber);
+    margin-left: 0.02em;
+  }
+
+  .nav__mark-tag {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+
+  .nav__links {
+    display: flex;
+    align-items: center;
+    gap: 2.25rem;
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  .nav__links a {
+    color: var(--text-soft);
+    position: relative;
+    padding: 0.4rem 0;
+    transition: color 0.3s var(--ease-out);
+  }
+
+  .nav__links a[data-num]::before {
+    content: attr(data-num);
+    color: var(--amber);
+    margin-right: 0.55em;
+    font-weight: 500;
+  }
+
+  .nav__links a:not(.nav__contact)::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -2px;
+    height: 1px;
+    background: var(--amber);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s var(--ease-out);
+  }
+
+  .nav__links a:hover { color: var(--text); }
+  .nav__links a:hover::after { transform: scaleX(1); }
+
+  .nav__contact {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    padding: 0.55rem 1rem !important;
+    border: 1px solid var(--hairline-2);
+    border-radius: 999px;
+    transition:
+      border-color 0.3s var(--ease-out),
+      background 0.3s var(--ease-out),
+      color 0.3s var(--ease-out);
+  }
+  .nav__contact svg {
+    width: 14px; height: 14px;
+    transition: transform 0.4s var(--ease-out);
+  }
+  .nav__contact:hover {
+    border-color: var(--amber);
+    color: var(--ink-deep);
+    background: var(--amber);
+  }
+  .nav__contact:hover svg { transform: translateX(3px); }
+
+  .nav .hairline {
+    max-width: var(--page-max);
+    margin: 0 auto;
+    opacity: 0.6;
+  }
+
+  @media (max-width: 720px) {
+    .nav__mark-tag { display: none; }
+    .nav__links { gap: 1.25rem; font-size: 0.7rem; letter-spacing: 0.12em; }
+    .nav__links a[data-num]::before { display: none; }
+    .nav__contact span { display: none; }
+    .nav__contact { padding: 0.5rem 0.6rem !important; }
+  }
+</style>

@@ -1,0 +1,62 @@
+---
+const year = new Date().getFullYear();
+---
+
+<footer class="foot">
+  <div class="foot__inner">
+    <hr class="hairline" />
+    <div class="foot__row">
+      <span class="foot__sig">
+        <span class="foot__sig-name">Damian Kapłon</span>
+        <span class="foot__sig-dot">·</span>
+        Software Engineer
+      </span>
+      <span class="foot__meta">
+        <a href="mailto:kaplon.damian99@gmail.com">kaplon.damian99@gmail.com</a>
+        <span class="foot__sep">·</span>
+        <span>© {year}</span>
+      </span>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .foot { position: relative; }
+  .foot__inner {
+    max-width: var(--page-max);
+    margin: 0 auto;
+    padding: 0 var(--page-pad-x) 2.5rem;
+  }
+  .foot__row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+    padding-top: 1.6rem;
+  }
+  .foot__sig {
+    font-family: var(--font-display);
+    font-size: 0.98rem;
+    color: var(--text-soft);
+  }
+  .foot__sig-name {
+    font-weight: 700;
+    letter-spacing: -0.015em;
+    color: var(--text);
+  }
+  .foot__sig-dot { color: var(--amber); margin: 0 0.4em; }
+  .foot__meta {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6em;
+  }
+  .foot__meta a { transition: color 0.3s var(--ease-out); }
+  .foot__meta a:hover { color: var(--amber); }
+  .foot__sep { color: var(--amber); }
+</style>
