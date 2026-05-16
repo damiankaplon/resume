@@ -337,7 +337,7 @@ import Portrait from './Portrait.astro';
     }
     .hero__portrait {
       order: -1;
-      justify-content: flex-start;
+      justify-content: center;
     }
     .hero__rail { display: none; }
 
@@ -345,6 +345,10 @@ import Portrait from './Portrait.astro';
        empty strip on the right of narrow viewports. */
     .hero__type,
     .hero__bio { max-width: none; }
+
+    /* Center the role label and name; bio, socials and CTAs stay left-aligned. */
+    .hero__role,
+    .hero__name { text-align: center; }
   }
 
   /* ── Mobile ──────────────────────────────── */
