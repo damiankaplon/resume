@@ -340,6 +340,11 @@ import Portrait from './Portrait.astro';
       justify-content: flex-start;
     }
     .hero__rail { display: none; }
+
+    /* Desktop type-column line-length caps would otherwise leave an
+       empty strip on the right of narrow viewports. */
+    .hero__type,
+    .hero__bio { max-width: none; }
   }
 
   /* ── Mobile ──────────────────────────────── */

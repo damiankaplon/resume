@@ -66,22 +66,32 @@ html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 body {
   margin: 0;
   min-height: 100vh;
-  background:
-    radial-gradient(ellipse 80% 60% at 18% -10%, var(--aurora-1) 0%, transparent 55%),
-    radial-gradient(ellipse 60% 45% at 95% 18%, rgba(59, 154, 255, 0.10) 0%, transparent 55%),
-    radial-gradient(ellipse 70% 50% at 110% 30%, var(--aurora-2) 0%, transparent 55%),
-    radial-gradient(ellipse 90% 70% at 50% 120%, var(--aurora-3) 0%, transparent 60%),
-    var(--ink-deep);
-  background-attachment: fixed;
+  background: var(--ink-deep);
   overflow-x: hidden;
   font-size: 17px;
   line-height: 1.6;
   letter-spacing: -0.005em;
+}
+
+/* Aurora layer — viewport-pinned via position:fixed (replaces background-attachment: fixed,
+   which renders unreliably on iOS Safari and some Android browsers, producing thin vertical
+   seams where the html background leaks through). */
+.bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 80% 60% at 18% -10%, var(--aurora-1) 0%, transparent 55%),
+    radial-gradient(ellipse 60% 45% at 95% 18%, rgba(59, 154, 255, 0.10) 0%, transparent 55%),
+    radial-gradient(ellipse 70% 50% at 110% 30%, var(--aurora-2) 0%, transparent 55%),
+    radial-gradient(ellipse 90% 70% at 50% 120%, var(--aurora-3) 0%, transparent 60%);
 }
 
 /* Fine grain overlay — sits above background, below content */
